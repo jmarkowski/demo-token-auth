@@ -40,10 +40,16 @@ A token is generated and verified with a digital signature.
 # Testing
 
 1. Start two terminals.
-1. In the first terminal, run the flask app.
+1. In the first terminal, run one of the the flask apps.
 
     ```
     $ flask --app app-with-basic-token.py run
+    ```
+
+    or
+
+    ```
+    $ flask --app app-with-jwt-token.py run
     ```
 
 2. In the second terminal, run the curl scripts to test the endpoints.
