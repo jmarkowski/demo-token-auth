@@ -1,7 +1,8 @@
 from flask import Flask
-from flask import request
 from flask import jsonify
 from flask import make_response
+from flask import request
+import datetime as dt
 import jwt
 
 
@@ -15,6 +16,14 @@ users = {}
 
 
 def generate_token(data):
+    # Add expiry data
+    expiry = dt.datetime.now() + dt.timedelta(seconds=MAX_TOKEN_AGE_S)
+
+    data.update({
+        'expiry': expiry.isoformat()
+    })
+
+    # Generate token
     token = jwt.encode(data, app.config['SECRET_KEY'], algorithm='HS256')
 
     return token
@@ -23,6 +32,11 @@ def generate_token(data):
 def verify_token(token):
     try:
         data = jwt.decode(token, app.config['SECRET_KEY'], algorithms='HS256')
+
+        # Check expiry
+        expiry = dt.datetime.fromisoformat(data['expiry'])
+
+        assert dt.datetime.now() < expiry
     except:
         data = None
 
