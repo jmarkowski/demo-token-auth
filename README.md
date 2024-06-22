@@ -36,6 +36,27 @@ A token is generated and verified with a digital signature.
 
     ```
     $ pip install -r requirements.txt
+
+# Testing
+
+1. Start two terminals.
+1. In the first terminal, run the flask app.
+
+    ```
+    $ flask --app app-with-basic-token.py run
+    ```
+
+2. In the second terminal, run the curl scripts to test the endpoints.
+
+    ```
+    $ ./register
+    {"message":"User successfully registered."}
+
+    $ ./login
+    {"token":"<token>"}
+
+    $ ./protected <token>
+    {"message":"Protected data accessed successfully!"}
     ```
 
 # Resources
