@@ -18,6 +18,26 @@ sent to the user.
 
 A token is generated and verified with a digital signature.
 
+# Setup
+
+1. Create a virtual environment.
+
+    ```
+    $ virtualenv pyenv
+    ```
+
+2. Activate the virtual ennvironment.
+
+    ```
+    $ source pyenv/bin/activate
+    ```
+
+3. Install the dependencies.
+
+    ```
+    $ pip install -r requirements.txt
+    ```
+
 # Resources
 
 [Token-based Authentication and
